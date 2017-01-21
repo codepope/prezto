@@ -71,4 +71,9 @@ if [[ ! -d "$TMPDIR" ]]; then
   mkdir -p -m 700 "$TMPDIR"
 fi
 
+if [[ ! -d "$GOPATH" ]]; then
+  export GOPATH=$HOME/go
+  export PATH=$PATH:/usr/local/go/bin:/usr/local/bin:$GOPATH/bin
+fi
+
 TMPPREFIX="${TMPDIR%/}/zsh"
