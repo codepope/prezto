@@ -1,0 +1,28 @@
+
+if (( $#==0 )) then
+  echo "Usage: cg [[repo/]org/]package"
+  return 1
+fi
+package=$1
+parts=(${(s:/:)package})
+
+if ((${+parts[3]})) then
+  cd $GOPATH/src/$1
+  return 0
+fi
+
+if ((${+parts[2]})) then
+  targs=`echo $GOPATH/src/*/$parts[1]/$parts[2]`
+else
+  targs=`echo $GOPATH/src/*/*/$parts[1]`
+fi
+
+possibles=(${(s: :)targs})
+
+if ((${+possibles[2]})) then
+  echo "Too many possible targets: $possibles"
+  return 1
+else
+  cd $possibles[1]
+  return 0
+fi
