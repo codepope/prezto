@@ -1,6 +1,6 @@
 
 if (( $#==0 )) then
-  echo "Usage: cg [[repo/]org/]package"
+  echo "Usage: cg [[org/]repo/]package"
   return 1
 fi
 package=$1
